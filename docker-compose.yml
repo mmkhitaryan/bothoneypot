@@ -6,9 +6,13 @@ services:
       - "5000"
   mitmproxy:
     image: mitmproxy/mitmproxy
-    command: "mitmweb --web-host 0.0.0.0 --mode reverse:http://web:5000/"
+    command: "mitmweb --web-host 0.0.0.0 --mode reverse:http://web:5000/ --set block_global=false"
     ports: 
       - "80:8080"
+      - "8080:8080"
+      - "9000:8080"
+      - "8000:8080"
+      - "5000:8080"
       - "127.0.0.1:8081:8081"
     depends_on:
       - web
